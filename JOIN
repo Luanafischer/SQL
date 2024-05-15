@@ -1,0 +1,16 @@
+USE BDEX1_HhOSPITAL;
+SELECT 
+c.data_cons AS dia,
+c.hora_cons AS horario,
+p.nome AS paciente,
+m.nome, m.crm, m.uf,
+d.nome_especialidade AS especialidade                                                  
+FROM consultas AS c
+JOIN pacientes AS p 
+ON p.cpf_paciente = c.cpf_paciente
+JOIN medicos AS m
+ON m.crm = c.crm
+AND m.uf = c.uf
+JOIN departamentos AS D
+ON d.cod_especialidade = m.depto_cod_espec
+ORDER BY dia,horario;
